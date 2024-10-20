@@ -1,0 +1,8 @@
+<%= simple_form_for(@passenger, as: :passenger, url: passenger_path(@passenger), method: :put) do |f| %>
+  <%= render partial: "shared/form_errors", locals: { model: @passenger } %>
+  <%= f.error_notification %>
+  <%= f.input :name, placeholder: "Sis. Luz" %>
+  <%= f.input :phone, as: :tel, placeholder: "+1 778 XXX XXXX" %>
+  <%= f.button :submit, 'Create Passenger Account' %>
+<% end %>
+
