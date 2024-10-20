@@ -1,5 +1,4 @@
 class PassengersController < ApplicationController
-  before_action :set_user_type
   before_action :set_passenger
 
   def new; end
@@ -9,7 +8,7 @@ class PassengersController < ApplicationController
   def edit; end
 
   def update
-    if @passenger.update(passenger_params)
+    if @passenger.update(passenger_params.merge(user_type: :passenger))
       redirect_to ride_requests_path
     else
       render :edit
@@ -20,10 +19,6 @@ class PassengersController < ApplicationController
 
   def set_passenger
     @passenger ||= current_user
-  end
-
-  def set_user_type
-    current_user.user_type = :passenger
   end
 
   def passenger_params

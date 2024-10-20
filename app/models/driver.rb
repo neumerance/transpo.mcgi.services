@@ -4,6 +4,7 @@ class Driver < User
   has_many :ride_requests, foreign_key: 'driver_id'
   has_one :drivers_on_duty, foreign_key: 'driver_id'
 
+  validates :name, :phone, presence: true
   validates :name, :phone, uniqueness: true
   validate :one_active_duty_per_driver
 

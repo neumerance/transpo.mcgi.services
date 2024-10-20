@@ -3,6 +3,8 @@ class Passenger < User
 
   has_one :ride_request, foreign_key: 'passenger_id'
 
+  validates :name, :phone, presence: true
+  validates :name, :phone, uniqueness: true
   validate :one_active_ride_per_passenger
 
   private
