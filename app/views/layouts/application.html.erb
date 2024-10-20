@@ -14,6 +14,9 @@
     <% if current_user %>
       <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
     <% end %>
+    <% if current_user.driver? && driver.drivers_on_duty.present? %>
+      <%= link_to 'End duty', drivers_on_duty_path(driver.drivers_on_duty), data: { "turbo-method": "delete" } %>
+    <% end %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>

@@ -5,6 +5,8 @@ class RideRequestsController < ApplicationController
 
   def index
     if current_user.driver?
+      redirect_to new_drivers_on_duty_path unless driver.drivers_on_duty.present?
+
       @ride_requests = RideRequest.awaiting
     else
       @ride_requests = RideRequest.where(passenger_id: current_user.id).where.not(status: [:completed, :ended])
