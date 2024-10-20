@@ -38,15 +38,5 @@ services:
     env_file:
       - .env
 
-  whenever:
-    build: .
-    command: bundle exec whenever --update-crontab
-    environment:
-      DATABASE_URL: postgres://postgres@db:5432/transpo_service_development
-    volumes:
-      - .:/app
-    depends_on:
-      - db
-
 volumes:
   transpo_data:

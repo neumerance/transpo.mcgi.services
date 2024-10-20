@@ -19,6 +19,9 @@ COPY . .
 # Set environment variables
 ENV RAILS_ENV=development
 
+# update crontab
+RUN bundle exec whenever --update-crontab
+
 # Expose the application port
 EXPOSE 3000
 
