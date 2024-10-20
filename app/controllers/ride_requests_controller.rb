@@ -13,6 +13,11 @@ class RideRequestsController < ApplicationController
     end
 
     @drivers_on_duty = DriversOnDuty.on_duty
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 
   def new

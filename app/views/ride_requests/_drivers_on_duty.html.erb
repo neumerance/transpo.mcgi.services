@@ -1,0 +1,11 @@
+<div>
+  <h4>Drivers on duty</h4>
+  <ul>
+    <% drivers_on_duty.each do |dod| %>
+    <li><%= dod.driver.name.titleize %> - <%= dod.occupied? ? 'occupied' : "available until #{distance_of_time_in_words(dod.on_duty_until, Time.zone.now)}" %></li>
+    <% end %>
+    <% if @drivers_on_duty.empty? %>
+    <li>No drivers available at this time</li>
+    <% end %>
+  </ul>
+</div>

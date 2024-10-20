@@ -7,6 +7,7 @@ class RideRequest < ApplicationRecord
   before_create :set_pickup_time
 
   validate :one_active_ride_per_passenger
+  validates :origin, :destination, :pickup_time, presence: true
 
   scope :with_statuses, ->(statuses) { where(status: statuses) }
 

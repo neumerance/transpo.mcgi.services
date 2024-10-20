@@ -1,7 +1,7 @@
-<div data-controller="ride-requests">
+<%= turbo_stream.replace 'ride_request_listing' do %>
   <div id="ride_request_listing">
     <%= render partial: "ride_requests/list", locals: { ride_requests: @ride_requests } %>
     <%= render partial: "ride_requests/ctas" %>
     <%= render partial: "ride_requests/drivers_on_duty", locals: { drivers_on_duty: @drivers_on_duty } %>
   </div>
-</div>
+<% end %>

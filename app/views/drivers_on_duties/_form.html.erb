@@ -1,0 +1,9 @@
+<%= simple_form_for(@drivers_on_duty, data: { turbo: false }) do |f| %>
+  <%= render partial: "shared/form_errors", locals: { model: @drivers_on_duty } %>
+  <%= f.error_notification %>
+
+  <%= f.input :seat_capacity, as: :integer, input_html: { min: 1 } %>
+  <%= f.input :on_duty_until, as: :time %>
+
+  <%= f.button :submit, 'Report for duty' %>
+<% end %>
