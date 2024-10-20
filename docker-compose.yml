@@ -1,0 +1,50 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: transpo_service_development
+      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes:
+      - transpo_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  web:
+    build: .
+    command: bundle exec rails s -b '0.0.0.0' -p 3000
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+      - delayed_job
+    environment:
+      DATABASE_URL: postgres://postgres@db:5432/transpo_service_development
+    env_file:
+      - .env
+
+  delayed_job:
+    build: .
+    command: bundle exec rake jobs:work
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgres://postgres@db:5432/transpo_service_development
+    env_file:
+      - .env
+
+  whenever:
+    build: .
+    command: bundle exec whenever --update-crontab
+    environment:
+      DATABASE_URL: postgres://postgres@db:5432/transpo_service_development
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+
+volumes:
+  transpo_data:
