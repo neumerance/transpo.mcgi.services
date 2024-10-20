@@ -14,7 +14,7 @@ class RideRequestsController < ApplicationController
   end
 
   def new
-    redirect_to ride_requests_path if passenger.ride_requests.exists?
+    redirect_to ride_requests_path if passenger.ride_request.present?
     @ride_request = RideRequest.new
   end
 
@@ -46,6 +46,8 @@ class RideRequestsController < ApplicationController
 
   def destroy
     RideRequest.find(params[:id]).destroy
+
+    redirect_to root_path
   end
 
   private

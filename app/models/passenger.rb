@@ -1,7 +1,7 @@
 class Passenger < User
   default_scope { where(user_type: :passenger) }
 
-  has_many :ride_requests, foreign_key: 'passenger_id'
+  has_one :ride_request, foreign_key: 'passenger_id'
 
   validate :one_active_ride_per_passenger
 
