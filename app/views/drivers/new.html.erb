@@ -1,0 +1,7 @@
+<%= simple_form_for @driver do |f| %>
+  <%= f.error_notification %>
+  <%= f.input :email, as: :email %>
+  <%= f.input :name %>
+  <%= f.input :phone, as: :tel %>
+  <%= f.button :submit, 'Create Drivers Account' %>
+<% end %>

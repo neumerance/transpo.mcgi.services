@@ -25,5 +25,7 @@ module TranspoMcgiServices
     # config.eager_load_paths << Rails.root.join("extras")
 
     config.active_job.queue_adapter = :delayed_job
+    config.time_zone = 'Pacific Time (US & Canada)'
+    config.active_record.default_timezone = :local
   end
 end
