@@ -11,6 +11,8 @@ class RideRequestsController < ApplicationController
     else
       @ride_requests = RideRequest.where(passenger_id: current_user.id).where.not(status: [:completed, :ended])
     end
+
+    @drivers_on_duty = DriversOnDuty.on_duty
   end
 
   def new

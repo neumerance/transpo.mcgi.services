@@ -1,9 +1,0 @@
-<%= simple_form_for(@driver, as: :driver, url: driver_path(@driver), method: :put) do |f| %>
-  <%= render partial: "shared/form_errors", locals: { model: @driver } %>
-  <%= f.error_notification %>
-
-  <%= f.input :name, placeholder: "Bro. George" %>
-  <%= f.input :phone, as: :tel, placeholder: "778 XXX XXXX" %>
-
-  <%= f.button :submit, 'Update Driver Account' %>
-<% end %>

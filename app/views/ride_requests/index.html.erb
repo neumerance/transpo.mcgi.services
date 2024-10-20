@@ -36,3 +36,16 @@
   </div>
 </div>
 <% end %>
+
+<% if current_user.passenger? && passenger.ride_request.nil? %>
+  <%= link_to "Request a new ride", new_ride_request_path %>
+<% end %>
+
+<div>
+<h4>Drivers on duty</h4>
+<ul>
+  <% @drivers_on_duty.each do |dod| %>
+  <li><%= dod.driver.name.titleize %> - <%= dod.occupied? ? 'occupied' : 'available' %></li>
+  <% end %>
+</ul>
+</div>

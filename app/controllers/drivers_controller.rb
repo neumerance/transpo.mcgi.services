@@ -16,7 +16,7 @@ class DriversController < ApplicationController
   private
 
   def set_driver
-    @driver ||= current_user
+    @driver ||= Driver.find(current_user.id)
   end
 
   def driver_params

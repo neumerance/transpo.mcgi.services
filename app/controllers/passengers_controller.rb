@@ -18,7 +18,7 @@ class PassengersController < ApplicationController
   private
 
   def set_passenger
-    @passenger ||= current_user
+    @passenger ||= Passenger.find(current_user.id)
   end
 
   def passenger_params
