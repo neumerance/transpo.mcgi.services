@@ -1,23 +1,24 @@
 class RideRequestsController < ApplicationController
   before_action :authenticate_user!
-  before_action :passenger_only_check, only: [:new, :create, :destroy]
-  before_action :driver_only_check, only: [:update, :pickup, :completed, :drop]
+  before_action :passenger_only_check!, only: [:new, :create, :destroy]
+  before_action :driver_only_check!, only: [:update, :pickup, :completed, :drop]
 
   def index
     if current_user.driver?
-      @ride_requests = RideRequest.pending
+      @ride_requests = RideRequest.awaiting
     else
-      @ride_requests = RideRequest.pending.where(passenger_id: current_user.id)
+      @ride_requests = RideRequest.where(passenger_id: current_user.id).where.not(status: [:completed, :ended])
     end
   end
 
   def new
+    redirect_to ride_requests_path if passenger.ride_requests.exists?
     @ride_request = RideRequest.new
   end
 
   def create
     @ride_request = RideRequest.new(create_ride_params)
-    @ride_request.passenger = current_user
+    @ride_request.passenger = passenger
 
     if @ride_request.save
       redirect_to ride_requests_path
@@ -28,12 +29,12 @@ class RideRequestsController < ApplicationController
 
   def pickup
     @ride_request = RideRequest.find(params[:id])
-    @ride_request.pickup(current_user)
+    @ride_request.pickup(driver)
   end
 
   def completed
     @ride_request = RideRequest.find(params[:id])
-    @ride_request.completed(current_user)
+    @ride_request.completed(driver)
   end
 
   def drop
@@ -46,6 +47,14 @@ class RideRequestsController < ApplicationController
   end
 
   private
+
+  def driver
+    @driver ||= Driver.find(current_user.id)
+  end
+
+  def passenger
+    @passenger ||= Passenger.find(current_user.id)
+  end
 
   def create_ride_params
     params.require(:ride_request).permit(

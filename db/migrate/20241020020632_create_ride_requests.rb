@@ -6,7 +6,7 @@ class CreateRideRequests < ActiveRecord::Migration[7.1]
       t.integer :seats, default: 1
       t.string :origin
       t.string :destination
-      t.integer :status, default: 1
+      t.integer :status, default: 0
       t.datetime :pickup_time
       t.timestamps
     end

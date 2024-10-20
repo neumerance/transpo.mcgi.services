@@ -45,7 +45,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_20_034649) do
     t.integer "seats", default: 1
     t.string "origin"
     t.string "destination"
-    t.integer "status", default: 1
+    t.integer "status", default: 0
     t.datetime "pickup_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -58,7 +58,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_20_034649) do
     t.string "email"
     t.string "name"
     t.string "phone"
-    t.integer "user_type", default: 2
+    t.integer "user_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "api_key"

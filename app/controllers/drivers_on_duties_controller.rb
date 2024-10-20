@@ -1,8 +1,9 @@
 class DriversOnDutiesController < ApplicationController
   before_action :authenticate_user!
-  before_action :driver_only_check
+  before_action :driver_only_check!
 
   def new
+    redirect_to ride_request_path if driver.drivers_on_duties.exists?
     @drivers_on_duty = DriversOnDuty.new
   end
 
@@ -22,6 +23,10 @@ class DriversOnDutiesController < ApplicationController
   end
 
   private
+
+  def driver
+    Driver.find(current_user.id)
+  end
 
   def drivers_on_duty_params
     params.require(:drivers_on_duty).permit(:seat_capacity, :on_duty_until)

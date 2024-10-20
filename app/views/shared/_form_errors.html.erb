@@ -1,0 +1,9 @@
+<% if model.errors[:base].any? %>
+  <div class="alert alert-danger">
+    <ul>
+      <% model.errors[:base].each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

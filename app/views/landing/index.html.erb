@@ -1,0 +1,8 @@
+<% if current_user.driver? %>
+  <%= link_to "Report for duty", new_drivers_on_duty_path %>
+<% elsif current_user.passenger? %>
+  <%= link_to "I need a ride", new_ride_request_path %>
+<% else %>
+  <%= link_to "I need a ride", edit_passenger_path(current_user) %>
+  <%= link_to "I want to drive", edit_driver_path(current_user) %>
+<% end %>

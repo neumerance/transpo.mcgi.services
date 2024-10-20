@@ -1,0 +1,31 @@
+<% @ride_requests.each do |ride_request| %>
+<div class="container">
+  <div class="card mb-4">
+    <div class="card-content">
+      <div class="content">
+        <div class="columns is-mobile">
+          <div class="column">
+            <strong>Passenger:</strong> <%= ride_request.passenger.name.titleize %>
+          </div>
+          <div class="column">
+            <strong>Seats:</strong>  <%= ride_request.seats %>
+          </div>
+        </div>
+        <div class="columns is-mobile">
+          <div class="column">
+            <strong>Origin:</strong> Vanc<%= ride_request.origin %>ouver
+          </div>
+          <div class="column">
+            <strong>Destination:</strong> <%= ride_request.destination %>
+          </div>
+        </div>
+        <div class="columns is-mobile">
+          <div class="column">
+            <strong>Pickup Time:</strong> <%= ride_request.pickup_time %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

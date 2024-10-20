@@ -8,7 +8,7 @@ class Passenger < User
   private
 
   def one_active_ride_per_passenger
-    if passenger.ride_requests.where(status: [:pending, :pickedup]).exists?
+    if ride_requests.where(status: [:pending, :pickedup]).exists?
       errors.add(
         :base,
         "Passenger can only have one active ride request at a time. "\

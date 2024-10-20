@@ -1,0 +1,9 @@
+<%= simple_form_for @ride_request do |f| %>
+  <%= render partial: "shared/form_errors", locals: { model: @ride_request } %>
+  <%= f.error_notification %>
+  <%= f.input :seats, placeholder: "1", as: :integer %>
+  <%= f.input :origin %>
+  <%= f.input :destination %>
+  <%= f.input :pickup_time, as: :time %>
+  <%= f.button :submit, 'Create Passenger Account' %>
+<% end %>
