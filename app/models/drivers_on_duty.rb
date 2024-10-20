@@ -1,0 +1,2 @@
+class DriversOnDuty < ApplicationRecord
+end
