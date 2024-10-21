@@ -24,7 +24,6 @@ services:
       - webpush
     environment:
       DATABASE_URL: postgres://postgres@db:5432/transpo_service_development
-      WEBPUSH_URL: webpush:3001
     env_file:
       - .env
     stdin_open: true
@@ -49,7 +48,7 @@ services:
       context: ./webpush-server
       dockerfile: Dockerfile
     ports:
-      - "3001:3000"
+      - "9090:9090"
     env_file:
       - .env
     stdin_open: true

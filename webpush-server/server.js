@@ -1,9 +1,13 @@
 const express = require('express');
 const webPush = require('web-push');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const app = express();
-const port = 3000;
+const port = 9090;
+
+// Enable CORS for all origins
+app.use(cors());
 
 // VAPID keys for authentication
 const vapidKeys = webPush.generateVAPIDKeys();

@@ -10,9 +10,10 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body data-controller="push-notification"
-        data-push-notification-public-key="<%= ENV['VAPID_KEY'] %>"
-        data-push-notification-user-id="<%= current_user&.id %>">
+  <body data-controller="webpush"
+        data-webpush-public-key="<%= ENV['VAPID_PUB_KEY'] %>"
+        data-webpush-user-id="<%= current_user&.id %>"
+        data-webpush-server-url="<%= ENV['WEBPUSH_URL'] %>">
     <% if current_user %>
       <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
       <% if current_user.driver? && driver.drivers_on_duty.present? %>
