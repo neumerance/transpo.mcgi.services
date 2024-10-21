@@ -1,6 +1,4 @@
 class PassengersController < ApplicationController
-  before_action :set_passenger
-
   def new; end
 
   def show; end

@@ -1,6 +1,4 @@
 class DriversController < ApplicationController
-  before_action :set_driver
-
   def show; end
 
   def edit; end
