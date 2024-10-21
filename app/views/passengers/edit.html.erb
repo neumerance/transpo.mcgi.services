@@ -1,5 +1,5 @@
-<%= simple_form_for(@passenger, as: :passenger, url: passenger_path(@passenger), method: :put, data: { turbo: false }) do |f| %>
-  <%= render partial: "shared/form_errors", locals: { model: @passenger } %>
+<%= simple_form_for(current_user, as: :passenger, url: passenger_path(current_user), method: :put, data: { turbo: false }) do |f| %>
+  <%= render partial: "shared/form_errors", locals: { model: current_user } %>
   <%= f.error_notification %>
   <%= f.input :name, placeholder: "Sis. Luz" %>
   <%= f.input :phone, as: :tel, placeholder: "778 XXX XXXX" %>

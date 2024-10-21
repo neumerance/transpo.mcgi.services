@@ -1,5 +1,5 @@
-<%= simple_form_for(@driver, as: :driver, url: driver_path(@driver), method: :put, data: { turbo: false }) do |f| %>
-  <%= render partial: "shared/form_errors", locals: { model: @driver } %>
+<%= simple_form_for(current_user, as: :driver, url: driver_path(current_user), method: :put, data: { turbo: false }) do |f| %>
+  <%= render partial: "shared/form_errors", locals: { model: current_user } %>
   <%= f.error_notification %>
 
   <%= f.input :name, placeholder: "Bro. George" %>
