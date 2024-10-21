@@ -8,7 +8,7 @@ class PassengersController < ApplicationController
   def edit; end
 
   def update
-    if @passenger.update(passenger_params.merge(user_type: :passenger))
+    if current_user.update(passenger_params.merge(user_type: :passenger))
       redirect_to ride_requests_path
     else
       render :edit
@@ -16,10 +16,6 @@ class PassengersController < ApplicationController
   end
 
   private
-
-  def set_passenger
-    @passenger ||= Passenger.find(current_user.id)
-  end
 
   def passenger_params
     params.require(:passenger).permit(:name, :phone)

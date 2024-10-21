@@ -6,7 +6,7 @@ class DriversController < ApplicationController
   def edit; end
 
   def update
-    if @driver.update(driver_params.merge(user_type: :driver))
+    if current_user.update(driver_params.merge(user_type: :driver))
       redirect_to new_drivers_on_duty_path
     else
       render :edit
@@ -14,10 +14,6 @@ class DriversController < ApplicationController
   end
 
   private
-
-  def set_driver
-    @driver ||= Driver.find(current_user.id)
-  end
 
   def driver_params
     params.require(:driver).permit(:name, :phone)
