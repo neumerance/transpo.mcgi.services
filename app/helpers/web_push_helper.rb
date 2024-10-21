@@ -1,0 +1,2 @@
+module WebPushHelper
+end

@@ -10,7 +10,9 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body data-controller="push-notification"
+        data-push-notification-public-key="<%= ENV['VAPID_KEY'] %>"
+        data-push-notification-user-id="<%= current_user&.id %>">
     <% if current_user %>
       <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
       <% if current_user.driver? && driver.drivers_on_duty.present? %>
