@@ -26,7 +26,7 @@
           </div>
           <div class="columns is-mobile">
             <div class="column">
-              <% if current_user.passenger? && ride_request.passenger_id == passenger.id %>
+              <% if passenger && ride_request.passenger_id == passenger.id %>
                 <%= link_to 'Cancel', ride_request_path(ride_request), data: { "turbo-method": "delete", "turbo-confirm": "Are you sure you wan to cancel your ride?" } %>
               <% end %>
             </div>

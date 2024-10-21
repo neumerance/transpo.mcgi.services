@@ -16,7 +16,7 @@
         data-webpush-server-url="<%= ENV['WEBPUSH_URL'] %>">
     <% if current_user %>
       <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
-      <% if current_user.driver? && driver.drivers_on_duty.present? %>
+      <% if driver && driver.drivers_on_duty.present? %>
         <%= link_to 'End duty', drivers_on_duty_path(driver.drivers_on_duty), data: { "turbo-method": "delete" } %>
       <% end %>
     <% end %>

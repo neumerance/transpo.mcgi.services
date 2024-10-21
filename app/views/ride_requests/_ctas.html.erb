@@ -1,3 +1,3 @@
-<% if current_user.passenger? && passenger.ride_request.nil? %>
+<% if passenger && passenger.ride_request.nil? %>
   <%= link_to "Request a new ride", new_ride_request_path %>
 <% end %>

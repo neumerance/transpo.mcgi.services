@@ -38,8 +38,8 @@ class User < ApplicationRecord
   def phone_format
     return unless phone.present?
 
-    unless phone.match?(/\A\d{3} \d{3} \d{4}\z/)
-      errors.add(:phone, "must be in the format XXX XXX XXXX")
+    unless phone.match?(/\A\d{3}\d{3}\d{4}\z/)
+      errors.add(:phone, "must be in the format XXXXXXXXXX")
     end
   end
 end

@@ -1,9 +1,9 @@
 module ApplicationHelper
   def driver
-    Driver.find(current_user.id)
+    Driver.find_by(id: current_user.id)
   end
 
   def passenger
-    Passenger.find(current_user.id)
+    Passenger.find_by(id: current_user.id)
   end
 end
