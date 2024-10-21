@@ -20,39 +20,26 @@ app.use(bodyParser.json());
 
 // Endpoint to subscribe to notifications
 app.post('/subscribe', (req, res) => {
-  const subscription = req.body;
-  const userId = subscription.userId; // Assuming userId is sent with the subscription
-
+  const { subscriptionData, userId } = req.body;
   // Store the subscription
-  subscriptions[userId] = subscription;
+  subscriptions[userId] = subscriptionData;
   res.status(201).json({});
 });
 
 // Endpoint to send notifications
 app.post('/notify', (req, res) => {
-  const { actor, recipients, data } = req.body;
-
-  // Generate the message
-  const message = `
-  Attention all units!
-  ${actor} has just requested a ride.
-  Pickup Location: ${data.origin}
-  Destination: ${data.destination}
-  Scheduled Pickup Time: ${data.pickup_time}
-  Seats Required: ${data.seats}
-  Contact Number: ${data.contact_number}
-
-  ${data.app_url}${data.cta_url}
-
-  May the Lord guide us in all our good deeds.
-  Salamat po sa Diyos.
-  `;
-
-  // Send notifications to the recipients
+  const { viewUrl, recipients, message } = req.body;
   recipients.forEach((recipient) => {
     const subscription = subscriptions[recipient];
+    const payload = JSON.stringify({
+      title: 'Attention all units!',
+      body: message,
+      actions: [{ action: 'view', title: 'View' }],
+      viewUrl: viewUrl
+    });
+
     if (subscription) {
-      webPush.sendNotification(subscription, message)
+      webPush.sendNotification(subscription, payload)
         .catch(error => console.error('Error sending notification:', error));
     }
   });

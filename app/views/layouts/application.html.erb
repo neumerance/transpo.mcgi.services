@@ -12,7 +12,7 @@
 
   <body data-controller="webpush"
         data-webpush-public-key="<%= ENV['VAPID_PUB_KEY'] %>"
-        data-webpush-user-id="<%= current_user&.id %>"
+        data-webpush-user-id='<%= current_user ? "#{current_user.name}#{current_user.id}".parameterize : nil %>'
         data-webpush-server-url="<%= ENV['WEBPUSH_URL'] %>">
     <% if current_user %>
       <%= link_to 'Logout', destroy_user_session_path, method: :delete %>

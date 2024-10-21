@@ -47,12 +47,15 @@ services:
     build:
       context: ./webpush-server
       dockerfile: Dockerfile
+    command: npm run dev
     ports:
-      - "9090:9090"
+      - "9090:9090"  # Map port 3000 in the container to port 3000 on the host
     env_file:
-      - .env
-    stdin_open: true
-    tty: true
+      - .env  # Load environment variables from .env file
+    volumes:
+      - ./webpush-server:/usr/src/app  # Mount local directory to the container for live reloading
+    stdin_open: true  # Keep stdin open for interactive debugging
+    tty: true  # Allocate a pseudo-TTY
 
 volumes:
   transpo_data:
