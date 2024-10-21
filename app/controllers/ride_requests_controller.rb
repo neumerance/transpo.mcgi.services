@@ -30,6 +30,7 @@ class RideRequestsController < ApplicationController
     @ride_request.passenger = passenger
 
     if @ride_request.save
+      RideRequestJob.perform_later ride_request_id: @ride_request.id
       redirect_to ride_requests_path
     else
       render :new

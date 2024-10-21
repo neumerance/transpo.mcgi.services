@@ -31,12 +31,16 @@ services:
   delayed_job:
     build: .
     command: bundle exec rake jobs:work
+    volumes:
+      - .:/app
     depends_on:
       - db
     environment:
       DATABASE_URL: postgres://postgres@db:5432/transpo_service_development
     env_file:
       - .env
+    stdin_open: true
+    tty: true
 
 volumes:
   transpo_data:
