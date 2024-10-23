@@ -48,13 +48,13 @@ services:
     build:
       context: ./webpush-server
       dockerfile: Dockerfile.prod
-    command: npm run start
+    environment:
+      NODE_ENV: production
+    command: npm run prod
     ports:
       - "9090:9090"
     env_file:
       - .env.production
-    depends_on:
-      - db
 
   nginx:
     image: nginx:latest

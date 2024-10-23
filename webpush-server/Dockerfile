@@ -4,6 +4,11 @@ FROM node:18
 # Set the working directory
 WORKDIR /usr/src/app
 
+# Install curl and clean up
+RUN apt-get update && \
+    apt-get install -y curl && \
+    rm -rf /var/lib/apt/lists/*
+
 # Copy package.json and package-lock.json files
 COPY package*.json ./
 

@@ -19,8 +19,11 @@ const subscriptions = {};
 app.use(bodyParser.json());
 
 // Endpoint to subscribe to notifications
-app.post('/', (req, res) => {
-  res.status(201).json({ message: "I'm good" });
+app.get('/', (req, res) => {
+  res.send("webpush is running");
+});
+app.get('/health', (req, res) => {
+  res.send("im alive");
 });
 
 
@@ -52,7 +55,7 @@ app.post('/notify', (req, res) => {
   res.status(200).json({ message: 'Notification sent.' });
 });
 
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
   console.log(`Server is running on http://localhost:${port}`);
   console.log(`VAPID Public Key: ${vapidKeys.publicKey}`);
 });
