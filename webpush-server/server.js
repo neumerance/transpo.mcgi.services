@@ -19,6 +19,11 @@ const subscriptions = {};
 app.use(bodyParser.json());
 
 // Endpoint to subscribe to notifications
+app.post('/', (req, res) => {
+  res.status(201).json({ message: "I'm good" });
+});
+
+
 app.post('/subscribe', (req, res) => {
   const { subscriptionData, userId } = req.body;
   // Store the subscription
