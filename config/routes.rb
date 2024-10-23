@@ -19,11 +19,4 @@ Rails.application.routes.draw do
       post :completed
     end
   end
-
-  resources :web_push do
-    collection do
-      post :subscribe
-      post :notify
-    end
-  end
 end
