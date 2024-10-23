@@ -4,7 +4,7 @@ self.addEventListener('push', function(event) {
   const viewUrl = data.viewUrl;
   const options = {
     body: data.body || 'You have a new message!',
-    icon: '/webpush/image.png',
+    icon: "/assets/service_worker_icon.png",
     actions: data.actions || [],
     data: {
       viewUrl: viewUrl

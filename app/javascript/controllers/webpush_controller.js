@@ -26,7 +26,7 @@ export default class extends Controller {
 
   subscribeUser(userId, publicKey, webpushServerUrl) {
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/webpush/service-worker.js')
+      navigator.serviceWorker.register(document.querySelector('meta[name="service-worker-url"]').content)
         .then((registration) => {
           const options = {
             userVisibleOnly: true,
