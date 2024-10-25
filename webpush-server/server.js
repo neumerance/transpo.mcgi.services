@@ -36,14 +36,15 @@ app.post('/subscribe', (req, res) => {
 
 // Endpoint to send notifications
 app.post('/notify', (req, res) => {
-  const { viewUrl, recipients, message } = req.body;
+  const { actor, viewUrl, recipients, message } = req.body;
   recipients.forEach((recipient) => {
     const subscription = subscriptions[recipient];
     const payload = JSON.stringify({
       title: 'Attention all units!',
       body: message,
       actions: [{ action: 'view', title: 'View' }],
-      viewUrl: viewUrl
+      viewUrl,
+      actor
     });
 
     if (subscription) {

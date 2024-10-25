@@ -3,12 +3,11 @@ self.addEventListener('push', function(event) {
   const title = data.title || 'New Notification';
   const viewUrl = data.viewUrl;
   const options = {
-    body: data.body || 'You have a new message!',
+    body: data.body,
     icon: "/assets/service_worker_icon.png",
     actions: data.actions || [],
-    data: {
-      viewUrl: viewUrl
-    }
+    requireInteraction: true,
+    data: { viewUrl: viewUrl }
   };
 
   // Directly pass the promise to waitUntil
@@ -18,7 +17,6 @@ self.addEventListener('push', function(event) {
     })
   );
 });
-
 
 self.addEventListener('notificationclick', function(event) {
   event.notification.close();

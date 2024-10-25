@@ -9,9 +9,9 @@ class RideRequestJob < ApplicationJob
     end.compact
 
     params = {
-      actor: passenger.name.parameterize,
+      actor: passenger.name.titleize,
       recipients: drivers,
-      message: "#{passenger.name.titleize} is looking for a ride!",
+      message: "#{passenger.name.titleize} is looking for a ride.",
       viewUrl: "http://localhost:3000/ride_requests/#{ride_request.id}"
     }
 
