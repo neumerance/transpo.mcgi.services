@@ -71,5 +71,4 @@ gem 'whenever', require: false
 gem 'delayed_job_active_record'
 gem 'simple_form'
 gem 'devise'
-gem 'knockapi'
 gem 'httparty'

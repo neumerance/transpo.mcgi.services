@@ -135,7 +135,6 @@ GEM
     jbuilder (2.13.0)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
-    knockapi (0.6.1)
     logger (1.6.1)
     loofah (2.22.0)
       crass (~> 1.0.2)
@@ -284,7 +283,6 @@ DEPENDENCIES
   httparty
   importmap-rails
   jbuilder
-  knockapi
   pg (~> 1.1)
   pry (~> 0.14.2)
   puma (>= 5.0)

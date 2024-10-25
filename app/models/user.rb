@@ -8,7 +8,6 @@ class User < ApplicationRecord
   enum user_type: [:passenger, :driver]
 
   before_create :generate_api_key
-  before_update :create_knock_user
 
   validates :api_key, uniqueness: true
   validates :email, presence: true
@@ -20,19 +19,6 @@ class User < ApplicationRecord
     return if self.class.exists?(api_key: api_key)
 
     self.api_key = SecureRandom.hex(20)
-  end
-
-  def create_knock_user
-    return unless phone.present? && name.present?
-
-    Knock::Users.identify(
-      id: name.parameterize,
-      data: {
-        name: name,
-        email: email,
-        phone_number: phone
-      }
-    )
   end
 
   def phone_format
