@@ -72,3 +72,5 @@ gem 'delayed_job_active_record'
 gem 'simple_form'
 gem 'devise'
 gem 'httparty'
+
+gem "mailgun-ruby", "~> 1.2"
