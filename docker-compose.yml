@@ -22,6 +22,7 @@ services:
       - db
       - delayed_job
       - webpush
+      - mailcatcher
     environment:
       DATABASE_URL: postgres://postgres@db:5432/transpo_service_development
     env_file:
@@ -49,13 +50,19 @@ services:
       dockerfile: Dockerfile
     command: npm run dev
     ports:
-      - "9090:9090"  # Map port 3000 in the container to port 3000 on the host
+      - "9090:9090"
     env_file:
-      - .env  # Load environment variables from .env file
+      - .env
     volumes:
-      - ./webpush-server:/usr/src/app  # Mount local directory to the container for live reloading
-    stdin_open: true  # Keep stdin open for interactive debugging
-    tty: true  # Allocate a pseudo-TTY
+      - ./webpush-server:/usr/src/app
+    stdin_open: true
+    tty: true
+
+  mailcatcher:
+    image: schickling/mailcatcher
+    ports:
+      - "1025:1025"  # SMTP port for catching emails
+      - "1080:1080"  # Web interface for viewing emails
 
 volumes:
   transpo_data:

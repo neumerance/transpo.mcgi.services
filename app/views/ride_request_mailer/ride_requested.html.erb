@@ -1,0 +1,21 @@
+<h1>Ride Request Details</h1>
+
+<p>Dear <%= @ride_request.passenger.name.titleize %>,</p>
+
+<p>Your ride request has been noted. Here are the details:</p>
+
+<ul>
+  <li><strong>Origin:</strong> <%= @ride_request.origin %></li>
+  <li><strong>Destination:</strong> <%= @ride_request.destination %></li>
+  <li><strong>Pickup Time:</strong> <%= @ride_request.pickup_time.strftime("%I:%M %P") %></li>
+</ul>
+
+<p>You can view more details about your ride request by clicking the link below:</p>
+
+<p><a href="<%= ENV['HOST'] %>/ride_requests/<%= @ride_request.id %>" target="_blank">View Ride Request Details</a></p>
+
+<p>Ingatan nawa po ng Panginoon.</p>
+
+<p>
+Vancouver MCGI-IT
+</p>

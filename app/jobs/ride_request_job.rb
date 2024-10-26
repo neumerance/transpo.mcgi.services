@@ -20,5 +20,8 @@ class RideRequestJob < ApplicationJob
       body: params.to_json,
       headers: { 'Content-Type' => 'application/json' }
     )
+
+    RideRequestMailer.ride_requested(ride_request).deliver_now
+    RideRequestMailer.notify_drivers(ride_request).deliver_now
   end
 end
